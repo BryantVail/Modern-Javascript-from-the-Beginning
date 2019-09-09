@@ -38,6 +38,36 @@ value = (true).toString();
 //
 value = "5";
 value = Number(value);
+//5, number, 5.00
+
+value = Number("100");
+//100, number, 100.00
+
+value = Number(true);
+// 1, number, 1.00
+
+value = Number(false);
+//0, number, 0.00
+
+value = Number(null);
+//0, number, 0.00
+
+value = Number("String of Characters");
+//NaN, number, NaN
+
+value = Number([1,2,3,4]);
+//NaN, number, NaN
+
+//parseInt()
+value = parseInt("100");
+//100, number, 100.00
+
+value = parseInt("100.30");
+//100, number, 100.00
+
+//parseFloat()
+value = parseFloat("100.33400");
+//100.334, number, 100.33
 
 // Output
 console.log(value);
@@ -48,5 +78,19 @@ console.log(typeof value);
 //      ONLY works with typeof 'Number'
 console.log(value.toFixed(2));
 
+let value1 = 5;
+const value2 = 6;
+const sum = value1 + value2;//sum of value1 & value2
 
+console.log(sum);
+console.log(typeof sum);
+
+
+const value1String = String(5);
+// value2 = 6;
+
+const sumStringWithNumber = value1String + value2;
+
+console.log(sumStringWithNumber);//'56', concatenation
+console.log(typeof sumStringWithNumber);
 
