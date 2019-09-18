@@ -23,6 +23,9 @@ let val;
 //print basic object
 val = person;
 
+console.log(val["birthYear"]);
+console.log(val.birthYear);
+
 //print property
 val = person.firstName;
 val = person["lastName"];
