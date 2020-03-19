@@ -5,11 +5,13 @@ let val;//initialize
 val = document;
 
 //html collection from doc
-val = document.all;//collection
-val = document.all[0];
-val = document.all[1];
+val = document.all;//collection or array with indexes with all elements
+    //^cannot use 'foreach' on this bc its a collection
+val = document.all[0];//html tag
+val = document.all[1];//header tag
+val = document.all[2];//body tag
 
-val = document.all.length;
+val = document.all.length;//number of elements
 val = document.head;
 val = document.body;
 val = document.doctype;
@@ -19,6 +21,7 @@ val = document.domain;
 val = document.URL;
 val = document.characterSet;
 val = document.contentType;
+// 8:30mins
 
 //get all forms
 val = document.forms;
