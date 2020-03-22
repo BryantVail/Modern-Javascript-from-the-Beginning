@@ -109,6 +109,7 @@ console.log(`numbers array after 'sort()': ${numbers}`);
 //'compare()' function
 //      2 arguments
 //
+//Ascending Order
 val = numbers.sort(function(x, y) {
   return x - y;
 });

@@ -80,4 +80,4 @@ const StopwatchForFunctions = function(
   console.timeEnd("default");
 };
 
-StopwatchForFunctions(iterateAndPrint, 100000000);
+StopwatchForFunctions(iterateAndPrint, 1000000000);
