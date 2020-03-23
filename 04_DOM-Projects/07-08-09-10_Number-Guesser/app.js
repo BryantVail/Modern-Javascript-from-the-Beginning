@@ -13,25 +13,37 @@
 // Game Values
 let min = 1,
   max = 10,
-  winningNumber = 2,
+  winningNumber = getRandomNumber(),
   guessesLeft = 3;
 
 // UI Elements
-const game = document.querySelector("#game"),
-  minNum = document.querySelector(".min-num"),
-  maxNum = document.querySelector(".max-num"),
-  guessInput = document.querySelector("#guess-input"),
-  guessBtn = document.querySelector("#guess-btn"),
-  message = document.querySelector(".message"),
+const gameWrapper = document.querySelector("#game"),
+  UIminNum = document.querySelector(".min-num"),
+  UImaxNum = document.querySelector(".max-num"),
+  UIguessInput = document.querySelector("#guess-input"),
+  UIguessBtn = document.querySelector("#guess-btn"),
+  UImessage = document.querySelector(".message"),
   playAgain = "Play Again!";
 
 //Assign UI min & max
-minNum.textContent = min;
-maxNum.textContent = max;
+UIminNum.textContent = min;
+UImaxNum.textContent = max;
+
+//play again event listener
+//-> using 'mousedown' bc if a click is captured, its going to
+//-> not show the 'play again' and run at the same time and not show
+//-> the message due to the other event handler
+gameWrapper.addEventListener("mousedown", function(e) {
+  console.log(1);
+
+  if (e.target.classList.contains("game-over")) {
+    window.location.reload();
+  }
+});
 
 // Listen for guess
-guessBtn.addEventListener("click", function(e) {
-  let guessNumber = parseInt(guessInput.value);
+UIguessBtn.addEventListener("click", function(e) {
+  let guessNumber = parseInt(UIguessInput.value);
   console.log(`button pressed, input: ${guessNumber}`);
 
   if (resetGame()) {
@@ -45,25 +57,67 @@ guessBtn.addEventListener("click", function(e) {
   // Check against winning number
   if (guessNumber === winningNumber) {
     // disable
-    guessInput.disabled = true;
-    setMessage(`You won! The winning number is: ${winningNumber}`, "green");
-    guessInput.style.borderColor = "green";
-    guessBtn.value = playAgain;
+
+    gameOver(true, `You won! The winning number is: ${winningNumber}`);
+  } else {
+    guessesLeft -= 1;
+
+    if (guessesLeft === 0) {
+      //game over
+      gameOver(false, `Game Over! The number to guess was ${winningNumber}`);
+    } else if (guessesLeft === 1) {
+      //game continues
+      UIguessInput.value = "";
+      setMessage(
+        `Incorrect guess of ${guessNumber}, ${guessesLeft} Final Guess Left `,
+        "red"
+      );
+    } else {
+      //game continues
+      UIguessInput.value = "";
+      setMessage(
+        `Incorrect guess of ${guessNumber}, ${guessesLeft} Guesses Left`,
+        "red"
+      );
+    }
   }
 
   e.preventDefault();
 });
 
+function gameOver(won, message) {
+  let color;
+  //ternary operator
+  won === true ? (color = "green") : (color = "red");
+
+  UIguessInput.disabled = true;
+  UIguessInput.style.borderColor = color;
+  UIguessBtn.value = "Play Again?";
+  setMessage(message, color);
+
+  //add game-over class to submit button
+  UIguessBtn.classList.add("game-over");
+}
+
 function resetGame() {
-  if (guessBtn.value == playAgain) {
-    guessBtn.value = "Submit";
-    guessInput.value = "";
-    message.textContent = "";
+  if (UIguessBtn.classList.contains("game-over")) {
+    UIguessBtn.value = "Submit";
+    UIguessInput.disabled = false;
+    UIguessInput.style.borderColor = "black";
+    UIguessInput.value = "";
+    UImessage.textContent = "";
+    winningNumber = getRandomNumber();
     return true;
   }
 }
 
+function getRandomNumber(minNum, maxNum) {
+  // Math.floor rounds down, since we're adding 'min' to the value we choose, we'll
+  //-> never get zero
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function setMessage(string, color) {
-  message.style.color = color;
-  message.textContent = string;
+  UImessage.style.color = color;
+  UImessage.textContent = string;
 }
