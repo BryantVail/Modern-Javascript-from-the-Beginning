@@ -1,0 +1,118 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cerulean/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LV/SIoc08vbV9CCeAwiz7RJZMI5YntsH8rGov0Y2nysmepqMWVvJqds6y0RaxIXT"
+      crossorigin="anonymous"
+    />
+    <title>WeatherJS</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-5 rounded">
+          <h1 id="w-location"></h1>
+          <h3 class="text-dark" id="w-description"></h3>
+          <h3 id="w-temperature"></h3>
+          <h3 id="w-clouds"></h3>
+          <img id="w-icon" />
+          <ul class="list-group mt-3" id="w-details">
+            <li class="list-group-item" id="w-humidity"></li>
+            <li class="list-group-item" id="w-dewpoint"></li>
+            <li class="list-group-item" id="w-apparent-temp"></li>
+            <li class="list-group-item" id="w-wind"></li>
+          </ul>
+          <hr />
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#locationModal"
+          >
+            Change Location
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="locationModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="locationModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="locationModalLabel">Choose Location</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="w-form">
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" />
+              </div>
+              <div class="form-group">
+                <label for="state">State</label>
+                <input
+                  type="text"
+                  name="state"
+                  class="form-control"
+                  id="state"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" id="w-change-btn" class="btn btn-primary">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
+    <!--  -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="storage.js"></script>
+    <script src="weather.js"></script>
+    <script src="ui.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
