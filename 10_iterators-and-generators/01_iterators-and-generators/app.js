@@ -6,11 +6,25 @@ function nameIterator(names) {
 
   return {
     next: function () {
-      return nextIndex < names.length
-        ? { value: names[nextIndex++], done: false }
-        : {
-            done: true,
-          };
+      // return nextIndex < names.length //then return
+      //   ? { value: names[nextIndex++], done: false } //else
+      //   : {
+      //       // return
+      //       done: true,
+      //     };
+
+      //traditional 'if' loop
+      if (nextIndex < names.length) {
+        return {
+          value: names[nextIndex++],
+          done: false,
+        };
+      } else {
+        // return
+        return {
+          done: true,
+        };
+      }
     },
   };
 }
@@ -21,6 +35,8 @@ const namesArray = ["bryant", "stephanie", "lewie", "john", "shirley"];
 const names = nameIterator(namesArray);
 
 console.log(names.next()); // returns object: {value: "{name}", done: "{bool}"}
+console.log(names.next().value);
+console.log(names.next().value);
 console.log(names.next().value);
 console.log(names.next().value);
 
