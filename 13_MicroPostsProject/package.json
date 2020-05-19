@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack-build": "webpack --mode production --progress",
-    "start-webpack-server": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open --hot"
+    "start-webpack-server": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open --hot",
+    "start-json-server": "json-server --watch data/db.json"
   },
   "author": "Brad Traversy",
   "license": "MIT",
